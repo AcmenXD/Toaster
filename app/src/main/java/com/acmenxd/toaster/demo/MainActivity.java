@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
      * Object资源Toast
      */
     public void btnClick2(View view) {
-        Toaster.show("Toast显示第1部分", "\n", "Toast显示第2部分");
+        Toaster.show("Toast显示第1部分", "\n", "Toast显示第2部分", 5);
     }
 
     /**

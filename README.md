@@ -58,6 +58,48 @@ Toaster.setNeedWait(ToastNW.NEED_WAIT);
 Toaster.debugShow("DebugToastShow");
 ```
 ---
+```java
+/**
+ * 支持任意多个参数+多类型
+ */
+Toaster.show("Toast显示第1部分", "\n", "Toast显示第2部分", 5);
+```
+---
+```java
+/**
+ * 支持自定义View类型
+ */
+Toaster.show(customView);
+```
+---
+```java
+/**
+ * 强制弹出,无等待
+ */
+Toaster.show(ToastNW.No_NEED_WAIT, "Toast显示第1部分", "\n", "Toast显示第2部分");
+```
+---
+```java
+/**
+ * 自定义时长
+ */
+Toaster.show(ToastD.d(4000), "Toast显示第1部分", "\n", "Toast显示第2部分");
+```
+---
+```java
+/**
+ * 位置居中显示
+ */
+Toaster.show(Gravity.CENTER, new String[]{"Toast显示第1部分", "\n", "Toast显示第2部分"});
+```
+---
+```java
+/**
+ * 强制弹出,无等待 + 自定义时长 + 位置居中显示
+ */
+Toaster.show(ToastNW.No_NEED_WAIT, ToastD.d(4000), Gravity.TOP, new String[]{"Toast显示第1部分", "\n", "Toast显示第2部分"});
+```
+---
 ### 打个小广告^_^
 **gitHub** : https://github.com/AcmenXD   如对您有帮助,欢迎点Star支持,谢谢~
 
