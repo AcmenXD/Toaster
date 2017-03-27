@@ -2,6 +2,7 @@ package com.acmenxd.toaster.demo;
 
 import android.app.Application;
 import android.content.res.Configuration;
+import android.widget.Toast;
 
 import com.acmenxd.toaster.ToastD;
 import com.acmenxd.toaster.ToastNW;
@@ -36,12 +37,12 @@ public final class BaseApplication extends Application {
     @Override
     public void onCreate() {
         /**
-         * 配置Logger
+         * 配置Toaster
          */
         Toaster.setContext(this);
         Toaster.setDebugOpen(true);
         Toaster.setDefaultDuration(ToastD.SHORT);
-        Toaster.setNeedWait(ToastNW.NEED_WAIT);
+        Toaster.setNeedWait(ToastNW.No_NEED_WAIT);
         // 初始化完毕
         isInitFinish = true;
     }
