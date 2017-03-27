@@ -26,4 +26,8 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.0.0'
     testCompile 'junit:junit:4.12'
+    /**
+     * 多功能 Android 吐司工具Toaster
+     */
+    compile 'com.github.AcmenXD:Toaster:1.0'
 }

@@ -3,10 +3,9 @@ package com.acmenxd.toaster.demo;
 import android.app.Application;
 import android.content.res.Configuration;
 
-import com.acmenxd.toast.ToastD;
-import com.acmenxd.toast.ToastNW;
-import com.acmenxd.toast.Toaster;
-
+import com.acmenxd.toaster.ToastD;
+import com.acmenxd.toaster.ToastNW;
+import com.acmenxd.toaster.Toaster;
 
 /**
  * @author AcmenXD

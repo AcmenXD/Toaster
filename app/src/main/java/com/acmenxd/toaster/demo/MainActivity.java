@@ -6,10 +6,17 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.acmenxd.toast.ToastD;
-import com.acmenxd.toast.ToastNW;
-import com.acmenxd.toast.Toaster;
+import com.acmenxd.toaster.ToastD;
+import com.acmenxd.toaster.ToastNW;
+import com.acmenxd.toaster.Toaster;
 
+/**
+ * @author AcmenXD
+ * @version v1.0
+ * @github https://github.com/AcmenXD
+ * @date 2016/11/22 14:36
+ * @detail something
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
