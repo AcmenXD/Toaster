@@ -23,7 +23,7 @@ public final class Toaster {
     public static boolean DEBUG = true; // Toast调试开关
     public static ToastD TOAST_DURATION = ToastD.SHORT; // Toast默认显示时长
     public static ToastNW NEED_WAIT = ToastNW.NEED_WAIT; // Toast显示方式 : Toast需要等待,并逐个显示 | Toast无需等待,直接显示
-    private static Context sContext;
+    private static Context sContext; // 上下文对象
 
     /**
      * 初始化
