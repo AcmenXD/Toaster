@@ -26,8 +26,8 @@ public final class Toaster {
     private static Context sContext; // 上下文对象
 
     /**
-     * 初始化
-     * context必须设置
+     * 设置Context对象
+     * * 必须设置,否则无法使用
      */
     public static void setContext(Context pContext) {
         sContext = pContext;
@@ -40,7 +40,7 @@ public final class Toaster {
     }
 
     /**
-     * 设置debug开关
+     * 设置debug开关,可根据debug-release配置
      * 默认为true
      */
     public static void setDebugOpen(boolean isOpen) {
@@ -49,15 +49,15 @@ public final class Toaster {
 
     /**
      * 设置默认显示时长
-     * 默认为ToastD.SHORT
+     * 默认为ToastD.SHORT = Toast.LENGTH_SHORT
      */
     public static void setDefaultDuration(ToastD pToastDuration) {
         TOAST_DURATION = pToastDuration;
     }
 
     /**
-     * 设置显示方式
-     * 默认为需要等待
+     * 设置Toaster显示方式 :  |
+     * 默认为ToastNW.NEED_WAIT(Toast需要等待,并逐个显示) 可设置为:ToastNW.No_NEED_WAIT(Toast无需等待,直接显示)
      */
     public static void setNeedWait(ToastNW pNeedWait) {
         NEED_WAIT = pNeedWait;
