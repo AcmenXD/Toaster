@@ -1,5 +1,9 @@
 # Toaster
 多功能 Android 吐司工具Toaster
+
+如要了解功能实现,请运行app程序查看控制台日志和源代码!
+* 源代码 : <a href="https://github.com/AcmenXD/Toaster">AcmenXD/Toaster</a>
+* apk下载路径 : <a href="https://github.com/AcmenXD/Resource/blob/master/apks/Toaster.apk">Toaster.apk</a>
 ### 依赖
 ---
 - AndroidStudio
