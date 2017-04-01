@@ -21,6 +21,8 @@ public final class BaseApplication extends Application {
     private static BaseApplication sInstance = null;
     // 初始化状态 -> 默认false,初始化完成为true
     public boolean isInitFinish = false;
+    // 记录启动时间
+    public long startTime = 0;
 
     public BaseApplication() {
         super();
@@ -36,13 +38,14 @@ public final class BaseApplication extends Application {
 
     @Override
     public void onCreate() {
+        startTime = System.currentTimeMillis();
         /**
          * 配置Toaster
          */
         Toaster.setContext(this);
         Toaster.setDebugOpen(true);
         Toaster.setDefaultDuration(ToastD.SHORT);
-        Toaster.setNeedWait(ToastNW.No_NEED_WAIT);
+        Toaster.setNeedWait(ToastNW.NEED_WAIT);
         // 初始化完毕
         isInitFinish = true;
     }
