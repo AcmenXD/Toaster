@@ -5,7 +5,7 @@
 * 源代码 : <a href="https://github.com/AcmenXD/Toaster">AcmenXD/Toaster</a>
 * apk下载路径 : <a href="https://github.com/AcmenXD/Resource/blob/master/apks/Toaster.apk">Toaster.apk</a>
 
-![jpg](https://github.com/AcmenXD/FrescoView/blob/master/pic/1.jpg)
+![jpg](https://github.com/AcmenXD/Toaster/blob/master/pic/1.jpg)
 
 ### 依赖
 ---
