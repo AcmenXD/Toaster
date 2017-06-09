@@ -19,7 +19,7 @@
 	}
 ```
 ```
-	 compile 'com.github.AcmenXD:Toaster:1.2'
+	 compile 'com.github.AcmenXD:Toaster:2.0'
 ```
 ### 功能
 ---
@@ -49,7 +49,7 @@ Toaster.setDebugOpen(true);
  * 设置默认显示时长
  * 默认为ToastD.SHORT = Toast.LENGTH_SHORT
  */
-Toaster.setDefaultDuration(ToastD.SHORT);
+Toaster.setDefaultDuration(ToastDuration.SHORT);
 /**
  * 设置Toaster显示方式 :  |
  * 默认为ToastNW.NEED_WAIT(Toast需要等待,并逐个显示) 可设置为:ToastNW.No_NEED_WAIT(Toast无需等待,直接显示)
@@ -90,7 +90,7 @@ Toaster.show(ToastNW.No_NEED_WAIT, "Toast显示第1部分", "\n", "Toast显示�
 /**
  * 自定义时长
  */
-Toaster.show(ToastD.d(4000), "Toast显示第1部分", "\n", "Toast显示第2部分");
+Toaster.show(ToastDuration.mk(4000), "Toast显示第1部分", "\n", "Toast显示第2部分");
 ```
 ---
 ```java
@@ -104,7 +104,7 @@ Toaster.show(Gravity.CENTER, new String[]{"Toast显示第1部分", "\n", "Toast�
 /**
  * 强制弹出,无等待 + 自定义时长 + 位置居中显示
  */
-Toaster.show(ToastNW.No_NEED_WAIT, ToastD.d(4000), Gravity.TOP, new String[]{"Toast显示第1部分", "\n", "Toast显示第2部分"});
+Toaster.show(ToastNW.No_NEED_WAIT, ToastDuration.mk(4000), Gravity.TOP, new String[]{"Toast显示第1部分", "\n", "Toast显示第2部分"});
 ```
 ---
 ### 打个小广告^_^

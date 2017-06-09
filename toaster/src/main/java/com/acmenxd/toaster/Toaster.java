@@ -294,7 +294,7 @@ public final class Toaster {
      * 所有参数为 view 的统一到这里
      */
     public static void showAll(boolean isDebug, @NonNull ToastNW needWait, @NonNull ToastDuration duration, int gravity, int offsetX, int offsetY, float marginX, float marginY, @NonNull View view) {
-        showBase(isDebug, needWait, duration, gravity, offsetX, offsetY, marginX, marginY, view, null);
+        showBase(isDebug, needWait, duration, gravity, offsetX, offsetY, marginX, marginY, view);
     }
 
     /**

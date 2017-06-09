@@ -2,9 +2,7 @@ package com.acmenxd.toaster.demo;
 
 import android.app.Application;
 import android.content.res.Configuration;
-import android.widget.Toast;
-
-import com.acmenxd.toaster.ToastD;
+import com.acmenxd.toaster.ToastDuration;
 import com.acmenxd.toaster.ToastNW;
 import com.acmenxd.toaster.Toaster;
 
@@ -38,13 +36,14 @@ public final class BaseApplication extends Application {
 
     @Override
     public void onCreate() {
+        super.onCreate();
         startTime = System.currentTimeMillis();
         /**
          * 配置Toaster
          */
         Toaster.setContext(this);
         Toaster.setDebugOpen(true);
-        Toaster.setDefaultDuration(ToastD.SHORT);
+        Toaster.setDefaultDuration(ToastDuration.SHORT);
         Toaster.setNeedWait(ToastNW.NEED_WAIT);
         // 初始化完毕
         isInitFinish = true;
