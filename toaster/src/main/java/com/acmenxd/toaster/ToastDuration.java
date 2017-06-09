@@ -1,5 +1,6 @@
 package com.acmenxd.toaster;
 
+import android.support.annotation.IntRange;
 import android.widget.Toast;
 
 /**
@@ -9,20 +10,20 @@ import android.widget.Toast;
  * @date 2016/12/22 13:27
  * @detail 设置Toast显示时长类 -> 作用ToastDuration
  */
-public class ToastD {
+public final class ToastDuration {
     /**
      * 短时间显示 -> 对应Toast.LENGTH_SHORT
      */
-    public static final ToastD SHORT = ToastD.d(Toast.LENGTH_SHORT);
+    public static final ToastDuration SHORT = ToastDuration.mk(Toast.LENGTH_SHORT);
     /**
      * 长时间显示 -> 对应Toast.LENGTH_LONG
      */
-    public static final ToastD LONG = ToastD.d(Toast.LENGTH_LONG);
+    public static final ToastDuration LONG = ToastDuration.mk(Toast.LENGTH_LONG);
 
     /**
      * 默认显示时长 -> BuildConfig里配置
      */
-    public static final ToastD Default() {
+    public static final ToastDuration Default() {
         return Toaster.TOAST_DURATION;
     }
 
@@ -32,14 +33,14 @@ public class ToastD {
      * @param pDuration 时长(毫秒)
      * @return
      */
-    public static ToastD d(int pDuration) {
-        return new ToastD(pDuration);
+    public static ToastDuration mk(@IntRange(from = 0) int pDuration) {
+        return new ToastDuration(pDuration);
     }
 
     // 初始显示时长
     private int mDuration = Toast.LENGTH_SHORT;
 
-    private ToastD(int pDuration) {
+    private ToastDuration(@IntRange(from = 0) int pDuration) {
         mDuration = pDuration;
     }
 

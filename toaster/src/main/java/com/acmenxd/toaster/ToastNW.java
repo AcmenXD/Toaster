@@ -7,18 +7,18 @@ package com.acmenxd.toaster;
  * @date 2016/12/22 14:21
  * @detail Toast 显示模式 -> 作用ToastsNeedWait
  */
-public class ToastNW {
+public final class ToastNW {
     /**
      * Toast需要等待,并逐个显示
      */
-    public static ToastNW NEED_WAIT = ToastNW.n(true);
+    public static ToastNW NEED_WAIT = ToastNW.mk(true);
     /**
      * Toast无需等待,直接显示
      */
-    public static ToastNW No_NEED_WAIT = ToastNW.n(false);
+    public static ToastNW No_NEED_WAIT = ToastNW.mk(false);
 
 
-    private static ToastNW n(boolean pIsNeedWait) {
+    private static ToastNW mk(boolean pIsNeedWait) {
         return new ToastNW(pIsNeedWait);
     }
 
@@ -28,7 +28,7 @@ public class ToastNW {
         this.mIsNeedWait = pIsNeedWait;
     }
 
-    public boolean isNeedWait(){
+    public boolean isNeedWait() {
         return mIsNeedWait;
     }
 }

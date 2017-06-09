@@ -1,6 +1,9 @@
 package com.acmenxd.toaster;
 
 import android.content.Context;
+import android.support.annotation.IntRange;
+import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
@@ -21,7 +24,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public final class Toaster {
     public static boolean DEBUG = true; // Toast调试开关
-    public static ToastD TOAST_DURATION = ToastD.SHORT; // Toast默认显示时长
+    public static ToastDuration TOAST_DURATION = ToastDuration.SHORT; // Toast默认显示时长
     public static ToastNW NEED_WAIT = ToastNW.NEED_WAIT; // Toast显示方式 : Toast需要等待,并逐个显示 | Toast无需等待,直接显示
     private static Context sContext; // 上下文对象
 
@@ -29,7 +32,7 @@ public final class Toaster {
      * 设置Context对象
      * * 必须设置,否则无法使用
      */
-    public static void setContext(Context pContext) {
+    public static void setContext(@NonNull Context pContext) {
         sContext = pContext;
         Toast toast = new Toast(pContext);
         gravity = toast.getGravity();
@@ -51,7 +54,7 @@ public final class Toaster {
      * 设置默认显示时长
      * 默认为ToastD.SHORT = Toast.LENGTH_SHORT
      */
-    public static void setDefaultDuration(ToastD pToastDuration) {
+    public static void setDefaultDuration(@NonNull ToastDuration pToastDuration) {
         TOAST_DURATION = pToastDuration;
     }
 
@@ -59,7 +62,7 @@ public final class Toaster {
      * 设置Toaster显示方式 :  |
      * 默认为ToastNW.NEED_WAIT(Toast需要等待,并逐个显示) 可设置为:ToastNW.No_NEED_WAIT(Toast无需等待,直接显示)
      */
-    public static void setNeedWait(ToastNW pNeedWait) {
+    public static void setNeedWait(@NonNull ToastNW pNeedWait) {
         NEED_WAIT = pNeedWait;
     }
 
@@ -109,77 +112,77 @@ public final class Toaster {
     /**
      * Debug模式 ----------------- start
      */
-    public static void debugShow(int[] resIds) {
-        showAll(true, NEED_WAIT, ToastD.Default(), gravity, offsetX, offsetY, marginX, marginY, resIds);
+    public static void debugShow(@StringRes int[] resIds) {
+        showAll(true, NEED_WAIT, ToastDuration.Default(), gravity, offsetX, offsetY, marginX, marginY, resIds);
     }
 
-    public static void debugShow(Object... objs) {
-        showAll(true, NEED_WAIT, ToastD.Default(), gravity, offsetX, offsetY, marginX, marginY, objs);
+    public static void debugShow(@NonNull Object... objs) {
+        showAll(true, NEED_WAIT, ToastDuration.Default(), gravity, offsetX, offsetY, marginX, marginY, objs);
     }
 
-    public static void debugShow(View view) {
-        showAll(true, NEED_WAIT, ToastD.Default(), gravity, offsetX, offsetY, marginX, marginY, view);
+    public static void debugShow(@NonNull View view) {
+        showAll(true, NEED_WAIT, ToastDuration.Default(), gravity, offsetX, offsetY, marginX, marginY, view);
     }
 
-    public static void debugShow(ToastD duration, int[] resIds) {
+    public static void debugShow(@NonNull ToastDuration duration, @StringRes int[] resIds) {
         showAll(true, NEED_WAIT, duration, gravity, offsetX, offsetY, marginX, marginY, resIds);
     }
 
-    public static void debugShow(ToastD duration, Object... objs) {
+    public static void debugShow(@NonNull ToastDuration duration, @NonNull Object... objs) {
         showAll(true, NEED_WAIT, duration, gravity, offsetX, offsetY, marginX, marginY, objs);
     }
 
-    public static void debugShow(ToastD duration, View view) {
+    public static void debugShow(@NonNull ToastDuration duration, @NonNull View view) {
         showAll(true, NEED_WAIT, duration, gravity, offsetX, offsetY, marginX, marginY, view);
     }
 
-    public static void debugShow(ToastNW needWait, int[] resIds) {
-        showAll(true, needWait, ToastD.Default(), gravity, offsetX, offsetY, marginX, marginY, resIds);
+    public static void debugShow(@NonNull ToastNW needWait, @StringRes int[] resIds) {
+        showAll(true, needWait, ToastDuration.Default(), gravity, offsetX, offsetY, marginX, marginY, resIds);
     }
 
-    public static void debugShow(ToastNW needWait, Object... objs) {
-        showAll(true, needWait, ToastD.Default(), gravity, offsetX, offsetY, marginX, marginY, objs);
+    public static void debugShow(@NonNull ToastNW needWait, @NonNull Object... objs) {
+        showAll(true, needWait, ToastDuration.Default(), gravity, offsetX, offsetY, marginX, marginY, objs);
     }
 
-    public static void debugShow(ToastNW needWait, View view) {
-        showAll(true, needWait, ToastD.Default(), gravity, offsetX, offsetY, marginX, marginY, view);
+    public static void debugShow(@NonNull ToastNW needWait, @NonNull View view) {
+        showAll(true, needWait, ToastDuration.Default(), gravity, offsetX, offsetY, marginX, marginY, view);
     }
 
-    public static void debugShow(int gravity, int[] resIds) {
-        showAll(true, NEED_WAIT, ToastD.Default(), gravity, offsetX, offsetY, marginX, marginY, resIds);
+    public static void debugShow(@IntRange(from = 0) int gravity, @StringRes int[] resIds) {
+        showAll(true, NEED_WAIT, ToastDuration.Default(), gravity, offsetX, offsetY, marginX, marginY, resIds);
     }
 
     // 此函数的 objs 特殊,否则与show(Object... objs)冲突
-    public static void debugShow(int gravity, Object[] objs) {
-        showAll(true, NEED_WAIT, ToastD.Default(), gravity, offsetX, offsetY, marginX, marginY, objs);
+    public static void debugShow(@IntRange(from = 0) int gravity, @NonNull Object[] objs) {
+        showAll(true, NEED_WAIT, ToastDuration.Default(), gravity, offsetX, offsetY, marginX, marginY, objs);
     }
 
-    public static void debugShow(int gravity, View view) {
-        showAll(true, NEED_WAIT, ToastD.Default(), gravity, offsetX, offsetY, marginX, marginY, view);
+    public static void debugShow(@IntRange(from = 0) int gravity, @NonNull View view) {
+        showAll(true, NEED_WAIT, ToastDuration.Default(), gravity, offsetX, offsetY, marginX, marginY, view);
     }
 
-    public static void debugShow(ToastNW needWait, ToastD duration, int[] resIds) {
+    public static void debugShow(@NonNull ToastNW needWait, @NonNull ToastDuration duration, @StringRes int[] resIds) {
         showAll(true, needWait, duration, gravity, offsetX, offsetY, marginX, marginY, resIds);
     }
 
-    public static void debugShow(ToastNW needWait, ToastD duration, Object... objs) {
+    public static void debugShow(@NonNull ToastNW needWait, @NonNull ToastDuration duration, @NonNull Object... objs) {
         showAll(true, needWait, duration, gravity, offsetX, offsetY, marginX, marginY, objs);
     }
 
-    public static void debugShow(ToastNW needWait, ToastD duration, View view) {
+    public static void debugShow(@NonNull ToastNW needWait, @NonNull ToastDuration duration, @NonNull View view) {
         showAll(true, needWait, duration, gravity, offsetX, offsetY, marginX, marginY, view);
     }
 
-    public static void debugShow(ToastNW needWait, ToastD duration, int gravity, int[] resIds) {
+    public static void debugShow(@NonNull ToastNW needWait, @NonNull ToastDuration duration, @IntRange(from = 0) int gravity, @StringRes int[] resIds) {
         showAll(true, needWait, duration, gravity, offsetX, offsetY, marginX, marginY, resIds);
     }
 
     // 此函数的 objs 特殊,否则与show(Object... objs)冲突
-    public static void debugShow(ToastNW needWait, ToastD duration, int gravity, Object[] objs) {
+    public static void debugShow(@NonNull ToastNW needWait, @NonNull ToastDuration duration, @IntRange(from = 0) int gravity, @NonNull Object[] objs) {
         showAll(true, needWait, duration, gravity, offsetX, offsetY, marginX, marginY, objs);
     }
 
-    public static void debugShow(ToastNW needWait, ToastD duration, int gravity, View view) {
+    public static void debugShow(@NonNull ToastNW needWait, @NonNull ToastDuration duration, @IntRange(from = 0) int gravity, @NonNull View view) {
         showAll(true, needWait, duration, gravity, offsetX, offsetY, marginX, marginY, view);
     }
     // Debug模式 ----------------- end
@@ -187,77 +190,77 @@ public final class Toaster {
     /**
      * 非调试模式 ----------------- start
      */
-    public static void show(int[] resIds) {
-        showAll(false, NEED_WAIT, ToastD.Default(), gravity, offsetX, offsetY, marginX, marginY, resIds);
+    public static void show(@StringRes int[] resIds) {
+        showAll(false, NEED_WAIT, ToastDuration.Default(), gravity, offsetX, offsetY, marginX, marginY, resIds);
     }
 
-    public static void show(Object... objs) {
-        showAll(false, NEED_WAIT, ToastD.Default(), gravity, offsetX, offsetY, marginX, marginY, objs);
+    public static void show(@NonNull Object... objs) {
+        showAll(false, NEED_WAIT, ToastDuration.Default(), gravity, offsetX, offsetY, marginX, marginY, objs);
     }
 
-    public static void show(View view) {
-        showAll(false, NEED_WAIT, ToastD.Default(), gravity, offsetX, offsetY, marginX, marginY, view);
+    public static void show(@NonNull View view) {
+        showAll(false, NEED_WAIT, ToastDuration.Default(), gravity, offsetX, offsetY, marginX, marginY, view);
     }
 
-    public static void show(ToastD duration, int[] resIds) {
+    public static void show(@NonNull ToastDuration duration, @StringRes int[] resIds) {
         showAll(false, NEED_WAIT, duration, gravity, offsetX, offsetY, marginX, marginY, resIds);
     }
 
-    public static void show(ToastD duration, Object... objs) {
+    public static void show(@NonNull ToastDuration duration, @NonNull Object... objs) {
         showAll(false, NEED_WAIT, duration, gravity, offsetX, offsetY, marginX, marginY, objs);
     }
 
-    public static void show(ToastD duration, View view) {
+    public static void show(@NonNull ToastDuration duration, @NonNull View view) {
         showAll(false, NEED_WAIT, duration, gravity, offsetX, offsetY, marginX, marginY, view);
     }
 
-    public static void show(ToastNW needWait, int[] resIds) {
-        showAll(false, needWait, ToastD.Default(), gravity, offsetX, offsetY, marginX, marginY, resIds);
+    public static void show(@NonNull ToastNW needWait, @StringRes int[] resIds) {
+        showAll(false, needWait, ToastDuration.Default(), gravity, offsetX, offsetY, marginX, marginY, resIds);
     }
 
-    public static void show(ToastNW needWait, Object... objs) {
-        showAll(false, needWait, ToastD.Default(), gravity, offsetX, offsetY, marginX, marginY, objs);
+    public static void show(@NonNull ToastNW needWait, @NonNull Object... objs) {
+        showAll(false, needWait, ToastDuration.Default(), gravity, offsetX, offsetY, marginX, marginY, objs);
     }
 
-    public static void show(ToastNW needWait, View view) {
-        showAll(false, needWait, ToastD.Default(), gravity, offsetX, offsetY, marginX, marginY, view);
+    public static void show(@NonNull ToastNW needWait, @NonNull View view) {
+        showAll(false, needWait, ToastDuration.Default(), gravity, offsetX, offsetY, marginX, marginY, view);
     }
 
-    public static void show(int gravity, int[] resIds) {
-        showAll(false, NEED_WAIT, ToastD.Default(), gravity, offsetX, offsetY, marginX, marginY, resIds);
+    public static void show(@IntRange(from = 0) int gravity, @StringRes int[] resIds) {
+        showAll(false, NEED_WAIT, ToastDuration.Default(), gravity, offsetX, offsetY, marginX, marginY, resIds);
     }
 
     // 此函数的 objs 特殊,否则与show(Object... objs)冲突
-    public static void show(int gravity, Object[] objs) {
-        showAll(false, NEED_WAIT, ToastD.Default(), gravity, offsetX, offsetY, marginX, marginY, objs);
+    public static void show(@IntRange(from = 0) int gravity, @NonNull Object[] objs) {
+        showAll(false, NEED_WAIT, ToastDuration.Default(), gravity, offsetX, offsetY, marginX, marginY, objs);
     }
 
-    public static void show(int gravity, View view) {
-        showAll(false, NEED_WAIT, ToastD.Default(), gravity, offsetX, offsetY, marginX, marginY, view);
+    public static void show(@IntRange(from = 0) int gravity, @NonNull View view) {
+        showAll(false, NEED_WAIT, ToastDuration.Default(), gravity, offsetX, offsetY, marginX, marginY, view);
     }
 
-    public static void show(ToastNW needWait, ToastD duration, int[] resIds) {
+    public static void show(@NonNull ToastNW needWait, @NonNull ToastDuration duration, @StringRes int[] resIds) {
         showAll(false, needWait, duration, gravity, offsetX, offsetY, marginX, marginY, resIds);
     }
 
-    public static void show(ToastNW needWait, ToastD duration, Object... objs) {
+    public static void show(@NonNull ToastNW needWait, @NonNull ToastDuration duration, Object... objs) {
         showAll(false, needWait, duration, gravity, offsetX, offsetY, marginX, marginY, objs);
     }
 
-    public static void show(ToastNW needWait, ToastD duration, View view) {
+    public static void show(@NonNull ToastNW needWait, @NonNull ToastDuration duration, View view) {
         showAll(false, needWait, duration, gravity, offsetX, offsetY, marginX, marginY, view);
     }
 
-    public static void show(ToastNW needWait, ToastD duration, int gravity, int[] resIds) {
+    public static void show(@NonNull ToastNW needWait, @NonNull ToastDuration duration, @IntRange(from = 0) int gravity, @StringRes int[] resIds) {
         showAll(false, needWait, duration, gravity, offsetX, offsetY, marginX, marginY, resIds);
     }
 
     // 此函数的 objs 特殊,否则与show(Object... objs)冲突
-    public static void show(ToastNW needWait, ToastD duration, int gravity, Object[] objs) {
+    public static void show(@NonNull ToastNW needWait, @NonNull ToastDuration duration, @IntRange(from = 0) int gravity, @NonNull Object[] objs) {
         showAll(false, needWait, duration, gravity, offsetX, offsetY, marginX, marginY, objs);
     }
 
-    public static void show(ToastNW needWait, ToastD duration, int gravity, View view) {
+    public static void show(@NonNull ToastNW needWait, @NonNull ToastDuration duration, @IntRange(from = 0) int gravity, @NonNull View view) {
         showAll(false, needWait, duration, gravity, offsetX, offsetY, marginX, marginY, view);
     }
     // 非调试模式 ----------------- end
@@ -265,7 +268,7 @@ public final class Toaster {
     /**
      * 所有参数为 resIds 的统一到这里
      */
-    public static void showAll(boolean isDebug, ToastNW needWait, ToastD duration, int gravity, int offsetX, int offsetY, float marginX, float marginY, int... resIds) {
+    public static void showAll(boolean isDebug, @NonNull ToastNW needWait, @NonNull ToastDuration duration, int gravity, int offsetX, int offsetY, float marginX, float marginY, @StringRes int... resIds) {
         if (resIds == null) {
             return;
         }
@@ -283,15 +286,15 @@ public final class Toaster {
     /**
      * 所有参数为 objs 的统一到这里
      */
-    public static void showAll(boolean isDebug, ToastNW needWait, ToastD duration, int gravity, int offsetX, int offsetY, float marginX, float marginY, Object... msgs) {
+    public static void showAll(boolean isDebug, @NonNull ToastNW needWait, @NonNull ToastDuration duration, int gravity, int offsetX, int offsetY, float marginX, float marginY, @NonNull Object... msgs) {
         showBase(isDebug, needWait, duration, gravity, offsetX, offsetY, marginX, marginY, null, msgs);
     }
 
     /**
      * 所有参数为 view 的统一到这里
      */
-    public static void showAll(boolean isDebug, ToastNW needWait, ToastD duration, int gravity, int offsetX, int offsetY, float marginX, float marginY, View view) {
-        showBase(isDebug, needWait, duration, gravity, offsetX, offsetY, marginX, marginY, view);
+    public static void showAll(boolean isDebug, @NonNull ToastNW needWait, @NonNull ToastDuration duration, int gravity, int offsetX, int offsetY, float marginX, float marginY, @NonNull View view) {
+        showBase(isDebug, needWait, duration, gravity, offsetX, offsetY, marginX, marginY, view, null);
     }
 
     /**
@@ -309,7 +312,7 @@ public final class Toaster {
      * @param msgs     Toast要显示的内容
      * @return Toast2 对象实例
      */
-    private static final synchronized Toast2 showBase(boolean isDebug, ToastNW needWait, ToastD duration, int gravity, int offsetX, int offsetY, float marginX, float marginY, View view, Object... msgs) {
+    private static final synchronized Toast2 showBase(boolean isDebug, @NonNull ToastNW needWait, @NonNull ToastDuration duration, int gravity, int offsetX, int offsetY, float marginX, float marginY, View view, Object... msgs) {
         /**
          * 初始化
          */

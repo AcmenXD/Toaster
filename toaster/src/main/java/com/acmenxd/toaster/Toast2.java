@@ -2,6 +2,9 @@ package com.acmenxd.toaster;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.support.annotation.IntRange;
+import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 import android.view.View;
 import android.widget.Toast;
 
@@ -31,7 +34,7 @@ public final class Toast2 {
     private Timer mTimer; //show计时器
     private Timer mAllTimer; //总计时器
 
-    public Toast2(Context pContext, long pTid) {
+    public Toast2(@NonNull Context pContext, long pTid) {
         this.mToast = makeText(pContext, "", Toast.LENGTH_SHORT);
         this.mTId = pTid;
     }
@@ -46,7 +49,7 @@ public final class Toast2 {
      * @return
      */
     public boolean isCancel() {
-        if (isCancel){
+        if (isCancel) {
             return true;
         }
         if (mType == 1) {
@@ -83,7 +86,7 @@ public final class Toast2 {
         }
     }
 
-    public void show(final int duration) {
+    public void show(@IntRange(from = 0) final int duration) {
         /**
          * 设置显示时间
          */
@@ -140,7 +143,7 @@ public final class Toast2 {
         return mToast.getYOffset();
     }
 
-    public void setView(View view) {
+    public void setView(@NonNull View view) {
         mToast.setView(view);
     }
 
@@ -148,7 +151,7 @@ public final class Toast2 {
         return mToast.getView();
     }
 
-    public void setDuration(int duration) {
+    public void setDuration(@IntRange(from = 0) int duration) {
         mToast.setDuration(duration);
     }
 
@@ -168,7 +171,7 @@ public final class Toast2 {
         return mToast.getVerticalMargin();
     }
 
-    public void setGravity(int gravity, int xOffset, int yOffset) {
+    public void setGravity(@IntRange(from = 0) int gravity, int xOffset, int yOffset) {
         mToast.setGravity(gravity, xOffset, yOffset);
     }
 
@@ -180,11 +183,11 @@ public final class Toast2 {
         return mToast.getXOffset();
     }
 
-    public void setText(int resId) {
+    public void setText(@StringRes int resId) {
         mToast.setText(resId);
     }
 
-    public void setText(CharSequence s) {
+    public void setText(@NonNull CharSequence s) {
         mToast.setText(s);
     }
 
@@ -193,11 +196,11 @@ public final class Toast2 {
         mToast.show();
     }
 
-    private static Toast makeText(Context context, CharSequence text, int duration) {
+    private static Toast makeText(@NonNull Context context, @NonNull CharSequence text, @IntRange(from = 0) int duration) {
         return Toast.makeText(context, text, duration);
     }
 
-    private static Toast makeText(Context context, int resId, int duration) throws Resources.NotFoundException {
+    private static Toast makeText(@NonNull Context context, @StringRes int resId, @IntRange(from = 0) int duration) throws Resources.NotFoundException {
         return Toast.makeText(context, resId, duration);
     }
     // 不对外开放 -------------------end

@@ -19,14 +19,10 @@
 	}
 ```
 ```
-	 compile 'com.github.AcmenXD:Toaster:1.1'
+	 compile 'com.github.AcmenXD:Toaster:1.2'
 ```
 ### 功能
 ---
-####v1.1 新增功能有:
-- 调整兼容版本,支持4.0(含)以上系统
-
-####v1.0 支持功能如下
 - 设置Debug开关,支持调试模式吐司
 - 支持自定义时长
 - 支持'无等待'模式,强制弹出
