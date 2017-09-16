@@ -4,11 +4,11 @@ import android.content.Context;
 import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
-import android.text.TextUtils;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
-
 import com.acmenxd.toaster.utils.ToastUtils;
 
 import java.util.Iterator;
@@ -23,10 +23,17 @@ import java.util.concurrent.ConcurrentHashMap;
  * @detail Toast总类
  */
 public final class Toaster {
-    public static boolean DEBUG = true; // Toast调试开关
-    public static ToastDuration TOAST_DURATION = ToastDuration.SHORT; // Toast默认显示时长
-    public static ToastNW NEED_WAIT = ToastNW.NEED_WAIT; // Toast显示方式 : Toast需要等待,并逐个显示 | Toast无需等待,直接显示
-    private static Context sContext; // 上下文对象
+    /**
+     * 初始化配置
+     */
+    // Toast调试开关 - 可根据debug-release配置
+    public static boolean DEBUG = true;
+    // Toast默认显示时长
+    public static ToastDuration TOAST_DURATION = ToastDuration.SHORT;
+    // Toast显示方式 - 默认为ToastNW.NEED_WAIT(Toast需要等待,并逐个显示) 可设置为:ToastNW.No_NEED_WAIT(Toast无需等待,直接显示)
+    public static ToastNW NEED_WAIT = ToastNW.NEED_WAIT;
+    // 上下文对象
+    private static Context sContext;
 
     /**
      * 设置Context对象
@@ -35,42 +42,25 @@ public final class Toaster {
     public static void setContext(@NonNull Context pContext) {
         sContext = pContext;
         Toast toast = new Toast(pContext);
+        // 初始配置
         gravity = toast.getGravity();
         offsetX = toast.getXOffset();
         offsetY = toast.getYOffset();
         marginX = toast.getHorizontalMargin();
         marginY = toast.getVerticalMargin();
-    }
-
-    /**
-     * 设置debug开关,可根据debug-release配置
-     * 默认为true
-     */
-    public static void setDebugOpen(boolean isOpen) {
-        DEBUG = isOpen;
-    }
-
-    /**
-     * 设置默认显示时长
-     * 默认为ToastD.SHORT = Toast.LENGTH_SHORT
-     */
-    public static void setDefaultDuration(@NonNull ToastDuration pToastDuration) {
-        TOAST_DURATION = pToastDuration;
-    }
-
-    /**
-     * 设置Toaster显示方式 :  |
-     * 默认为ToastNW.NEED_WAIT(Toast需要等待,并逐个显示) 可设置为:ToastNW.No_NEED_WAIT(Toast无需等待,直接显示)
-     */
-    public static void setNeedWait(@NonNull ToastNW pNeedWait) {
-        NEED_WAIT = pNeedWait;
+        // 项目配置
+        gravity = Gravity.CENTER;
+        offsetX = 0;
+        offsetY = 0;
+        marginX = 0;
+        marginY = 0;
     }
 
     // Toast 表
     private static Map<Long, Toast2> tMap = new ConcurrentHashMap<>();
     private static long mTId = 10000; //每个Toast的唯一Id
     // 默认的一些参数
-    private static int gravity = Gravity.BOTTOM;
+    private static int gravity = Gravity.CENTER;
     private static int offsetX = 0;
     private static int offsetY = 0;
     private static float marginX = 0;
@@ -81,7 +71,7 @@ public final class Toaster {
      *
      * @param tId
      */
-    public static void cancel(long tId) {
+    public synchronized static void cancel(long tId) {
         Toast2 t = tMap.remove(tId);
         if (t != null) {
             t.cancel();
@@ -91,7 +81,7 @@ public final class Toaster {
     /**
      * 取消所有Toast
      */
-    public static void cancelAll() {
+    public synchronized static void cancelAll() {
         Iterator<Long> it = tMap.keySet().iterator();
         while (it.hasNext()) {
             cancel(it.next());
@@ -101,7 +91,7 @@ public final class Toaster {
     /**
      * 检索集合,整理数据
      */
-    private static void checkCancel() {
+    private synchronized static void checkCancel() {
         for (Map.Entry<Long, Toast2> entry : tMap.entrySet()) {
             if (entry.getValue().isCancel()) {
                 cancel(entry.getKey());
@@ -313,6 +303,9 @@ public final class Toaster {
      * @return Toast2 对象实例
      */
     private static final synchronized Toast2 showBase(boolean isDebug, @NonNull ToastNW needWait, @NonNull ToastDuration duration, int gravity, int offsetX, int offsetY, float marginX, float marginY, View view, Object... msgs) {
+        if (view == null && ToastUtils.isEmpty(ToastUtils.appendStrs(msgs))) {
+            return null;
+        }
         /**
          * 初始化
          */
@@ -334,12 +327,12 @@ public final class Toaster {
             canShow = true;
         } else if (msgs != null & msgs.length > 0) {
             // view等于null时, 不显示view ,而显示内容
-            // Toast bug -> 文本存在换行时,Toast弹出动画会有问题,迷之问题
             String msgStr = ToastUtils.appendStrs(msgs);
-            if (!TextUtils.isEmpty(msgStr)) {
-                toast2.setText(msgStr);
-                canShow = true;
-            }
+            View layout = LayoutInflater.from(sContext).inflate(R.layout.widget_toaster, null);
+            ((TextView) layout.findViewById(R.id.widget_toaster_tvContent)).setText(msgStr);
+            toast2.setText(String.valueOf(mTId));
+            toast2.setView(layout);
+            canShow = true;
         }
         if (canShow) {
             toast2.setGravity(gravity, offsetX, offsetY);

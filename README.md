@@ -19,7 +19,7 @@
 	}
 ```
 ```
-	 compile 'com.github.AcmenXD:Toaster:2.0'
+	 compile 'com.github.AcmenXD:Toaster:2.1'
 ```
 ### 功能
 ---
@@ -36,25 +36,25 @@
 **在Application中配置**
 ```java
 /**
- * 设置Context对象
- * * 必须设置,否则无法使用
- */
-Toaster.setContext(this);
-/**
  * 设置debug开关,可根据debug-release配置
  * 默认为true
  */
-Toaster.setDebugOpen(true);
+Toaster.DEBUG = true;
 /**
  * 设置默认显示时长
  * 默认为ToastD.SHORT = Toast.LENGTH_SHORT
  */
-Toaster.setDefaultDuration(ToastDuration.SHORT);
+Toaster.TOAST_DURATION = ToastDuration.SHORT;
 /**
  * 设置Toaster显示方式 :  |
  * 默认为ToastNW.NEED_WAIT(Toast需要等待,并逐个显示) 可设置为:ToastNW.No_NEED_WAIT(Toast无需等待,直接显示)
  */
-Toaster.setNeedWait(ToastNW.NEED_WAIT);
+Toaster.NEED_WAIT = ToastNW.NEED_WAIT;
+/**
+ * 设置Context对象
+ * * 必须设置,否则无法使用
+ */
+Toaster.setContext(this);
 ```
 ### 使用 -> 以下代码 注释很详细、很重要很重要很重要!!!
 ---

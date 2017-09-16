@@ -1,6 +1,8 @@
 package com.acmenxd.toaster.utils;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.text.TextUtils;
 
 /**
  * @author AcmenXD
@@ -10,6 +12,23 @@ import android.support.annotation.NonNull;
  * @detail 工具类
  */
 public final class ToastUtils {
+
+    /**
+     * 字符串是否为空
+     */
+    public static boolean isEmpty(@Nullable CharSequence str) {
+        if (TextUtils.isEmpty(str)) {
+            return true;
+        }
+        for (int i = 0, len = str.length(); i < len; i++) {
+            char c = str.charAt(i);
+            if (c != ' ' && c != '\t' && c != '\r' && c != '\n') {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * 串拼接
      *

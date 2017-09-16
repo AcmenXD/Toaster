@@ -41,10 +41,11 @@ public final class BaseApplication extends Application {
         /**
          * 配置Toaster
          */
+        Toaster.DEBUG = true;
+        Toaster.TOAST_DURATION = ToastDuration.SHORT;
+        Toaster.NEED_WAIT = ToastNW.NEED_WAIT;
+        // * 必须设置,否则无法使用
         Toaster.setContext(this);
-        Toaster.setDebugOpen(true);
-        Toaster.setDefaultDuration(ToastDuration.SHORT);
-        Toaster.setNeedWait(ToastNW.NEED_WAIT);
         // 初始化完毕
         isInitFinish = true;
     }
